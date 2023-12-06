@@ -4,11 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.AttributeConverter;
-import org.springframework.core.convert.converter.Converter;
-
-import java.lang.annotation.Annotation;
-import java.util.List;
-import java.util.Map;
 
 public class SchemaConverter implements AttributeConverter<Schema, String> {
     @Override

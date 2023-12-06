@@ -48,8 +48,8 @@ class ConfigurationDemoApplicationTests {
 		service.addSchemaToConfigAndSetAsDefault(config.getId(), "Spaß mit");
 		service.addFile(config.getId(), "<json>Weiterer Spaß mit Strings</json>");
 
-		assertThrows(IllegalArgumentException.class, () -> {
-			service.addFile(config.getId(), "<json>Kein Spaß</json>");
-		});
+		assertThrows(IllegalArgumentException.class, () ->
+			service.addFile(config.getId(), "<json>Kein Spaß</json>")
+		);
 	}
 }
