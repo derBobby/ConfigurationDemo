@@ -16,7 +16,7 @@ public class Schema {
     private Long id;
 
     @Column
-    private Long configurationId;
+    private Long configId;
 
     @Column
     private String schemaString;
@@ -27,8 +27,8 @@ public class Schema {
     @Column
     private String createdDate;
 
-    public Schema(Long configurationId, String schemaString, String createdBy, String createdDate) {
-        this.configurationId = configurationId;
+    public Schema(Long configId, String schemaString, String createdBy, String createdDate) {
+        this.configId = configId;
         this.schemaString = schemaString;
         this.createdBy = createdBy;
         this.createdDate = createdDate;

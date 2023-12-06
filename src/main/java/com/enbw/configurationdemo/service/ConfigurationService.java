@@ -44,6 +44,13 @@ public class ConfigurationService {
     }
 
     @Transactional(rollbackOn = Exception.class)
+    public void setSchemaAsDefault(Long configId, Long schemaId) {
+        Configuration config = getConfigOrThrowException(configId);
+        Schema schema = getSchemaOrThrowException(configId, schemaId);
+        config.setCurrentSchema(schema);
+    }
+
+    @Transactional(rollbackOn = Exception.class)
     public void addSchemaToConfigAndSetAsDefault(Long configId, String schemaString) {
         Configuration config = getConfigOrThrowException(configId);
         Schema schema = createAndPersistSchema(configId, schemaString);
@@ -83,7 +90,7 @@ public class ConfigurationService {
     }
 
     /*
-     * HELPER
+     * GET OR EXCEPTION
      */
 
     private Configuration getConfigOrThrowException(Long configId) {
@@ -92,5 +99,13 @@ public class ConfigurationService {
             throw new IllegalArgumentException("Fuck off, Mate!");
         }
         return optionalConfiguration.get();
+    }
+
+    private Schema getSchemaOrThrowException(Long configId, Long schemaId) {
+        Optional<Schema> optionalSchema = schemaRepo.findByConfigIdAndId(configId, schemaId);
+        if (optionalSchema.isEmpty()) {
+            throw new IllegalArgumentException("Fuck off, Mate!");
+        }
+        return optionalSchema.get();
     }
 }
